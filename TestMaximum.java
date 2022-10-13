@@ -2,40 +2,30 @@ package Testmaximum;
 import java.util.Scanner;
 public class TestMaximum {
 
-    static void maxInt(int a, int b, int c){
-        if(a==b||b==c||a==c){
-            System.out.println("Two same numbers entered");
-        }
-        if(a>b&&a>c)
-            System.out.println("Maximum : "+a);
-        if(b>a&&b>c)
-            System.out.println("Maximum : "+b);
-        else{
-            System.out.println("Maximum : "+c);
-        }
-    }
-    static void maxFloat(float a, float b, float c){
-        if(a==b||b==c||a==c){
-            System.out.println("Two same numbers entered");
-        }
-        if(a>b&&a>c)
-            System.out.println("Maximum : "+a);
-        if(b>a&&b>c)
-            System.out.println("Maximum : "+b);
-        else{
-            System.out.println("Maximum : "+c);
+    public <T extends Comparable<T>> T compareTo(T a,T b,T c) {// UC4
+        if(a.compareTo(b) > 0){
+            if(a.compareTo(c) > 0) {
+                return a;
+            } else {
+                return c;
+            }
+        } else {
+            if(b.compareTo(c) > 0) {
+                return b;
+            } else {
+                return c;
+            }
         }
     }
-
 
     public static void main(String[] args) {
+
         System.out.println("Welcome to Test Maximum Problem!");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter 3 Integers");
-        float a = sc.nextInt();
-        float b = sc.nextInt();
-        float c = sc.nextInt();
-        maxInt((int) a,(int)b,(int)c);// UC1
-        maxFloat(a, b, c);// UC2
+        TestMaximum integerComparison = new TestMaximum();
+        System.out.println("Maximum from 3 Integer: " +integerComparison.compareTo(19, 12, 20));
+        TestMaximum floatComparison = new TestMaximum();
+        System.out.println("Maximum from 3 Float : " +floatComparison.compareTo(19.0F, 12.0F, 20.0F));
+        TestMaximum stringComparison = new TestMaximum();
+        System.out.println("Maximum from 3 String : " +stringComparison.compareTo("Apple", "Peach", "Banana"));
     }
 }
